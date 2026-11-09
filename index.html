@@ -3,198 +3,201 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>2 Player Games - Room Code Online</title>
+<title>2 Player Games - Real Room Code</title>
 <script src="https://unpkg.com/peerjs@1.5.3/dist/peerjs.min.js"></script>
 <style>
-*{margin:0;padding:0;box-sizing:border-box;font-family:'Segoe UI',Arial}
+*{margin:0;padding:0;box-sizing:border-box;font-family:Arial}
 body{background:#0f0f1a;color:#fff;min-height:100vh}
-.header{padding:15px;text-align:center;background:#1a1a2e}
-.header h1{font-size:24px} .header h1 span{color:#ff4757}
-.tabs{display:flex;gap:8px;justify-content:center;padding:12px}
-.tab{padding:8px 18px;border-radius:20px;background:#2a2a3d;border:none;color:#fff;cursor:pointer}
-.tab.active{background:#ff4757}
-.room-box{background:#1a1a2e;margin:10px;padding:15px;border-radius:15px;text-align:center;border:2px dashed #ff4757}
-.room-box input{padding:10px;border-radius:8px;border:none;width:140px;text-align:center;font-weight:bold;text-transform:uppercase}
-.btn{padding:10px 18px;border:none;border-radius:10px;background:#ff4757;color:#fff;font-weight:bold;cursor:pointer;margin:5px}
+.header{text-align:center;padding:15px;background:#1a1a2e}
+.header h1 span{color:#ff4757}
+.room{background:#1a1a2e;margin:10px;padding:15px;border-radius:15px;text-align:center;border:2px dashed #ff4757}
+input{padding:11px;border-radius:8px;border:none;width:130px;text-align:center;font-weight:bold;text-transform:uppercase}
+.btn{padding:11px 16px;border:none;border-radius:10px;background:#ff4757;color:#fff;font-weight:bold;cursor:pointer;margin:4px}
 .btn2{background:#2ed573}
 .grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;padding:12px}
-.card{background:#1e1e32;border-radius:18px;padding:15px;text-align:center;cursor:pointer;border:2px solid #2a2a3d}
-.card:hover{border-color:#ff4757}
-.card .emoji{font-size:48px}
-.card h3{margin:8px 0 4px} .card p{font-size:12px;color:#aaa}
+.card{background:#1e1e32;border-radius:18px;padding:18px;text-align:center;cursor:pointer;border:2px solid #2a2a3d}
+.card .emoji{font-size:45px}
 #gameArea{display:none;padding:15px;text-align:center}
-#board{display:grid;grid-template-columns:repeat(3,90px);gap:8px;justify-content:center;margin:15px auto}
-.cell{width:90px;height:90px;background:#2a2a3d;font-size:40px;display:flex;align-items:center;justify-content:center;border-radius:12px;cursor:pointer}
-.score{display:flex;justify-content:space-around;font-size:18px;font-weight:bold;margin:10px}
-#status{margin:10px;font-size:18px;color:#ffa502}
+.cell{width:85px;height:85px;background:#2a2a3d;font-size:38px;display:flex;align-items:center;justify-content:center;border-radius:12px;cursor:pointer}
+#board{display:grid;grid-template-columns:repeat(3,85px);gap:8px;justify-content:center;margin:15px auto}
 </style>
 </head>
 <body>
-<div class="header"><h1>🎮 <span>2 PLAYER</span> GAMES</h1><p>Online • Room Code • Free</p></div>
+<div class="header"><h1>🎮 <span>2 PLAYER</span> GAMES</h1><p>Real Online • No Bot</p></div>
 
-<div class="room-box">
-  <div id="myId" style="font-size:12px;color:#aaa">Connecting...</div>
+<div class="room">
+  <div id="myCodeText" style="font-size:13px;color:#aaa">Pehle CREATE dabao</div>
   <div style="margin-top:10px">
     <button class="btn" onclick="createRoom()">CREATE ROOM</button>
-    <input id="roomInput" placeholder="CODE DALO ex: PANI-123">
+    <input id="joinInput" placeholder="CODE EX: 1234">
     <button class="btn btn2" onclick="joinRoom()">JOIN</button>
   </div>
-  <div id="roomStatus">Dost ko code bhej ke khelo!</div>
-</div>
-
-<div class="tabs">
-  <button class="tab active">All</button>
-  <button class="tab">2 Players</button>
-  <button class="tab">Room Code</button>
+  <div id="connStatus" style="margin-top:8px;color:#ffa502">Not Connected - Pehle room banao</div>
 </div>
 
 <div class="grid" id="homeGrid">
-  <div class="card" onclick="openGame('rps')"><div class="emoji">✊✋✌️</div><h3>Stone Paper Scissors</h3><p>Room Code • 2P</p></div>
-  <div class="card" onclick="openGame('ttt')"><div class="emoji">❌⭕</div><h3>Tic Tac Toe</h3><p>Room Code • 2P</p></div>
-  <div class="card" onclick="openGame('memory')"><div class="emoji">🧠</div><h3>Memory</h3><p>Room Code • 2P</p></div>
-  <div class="card" onclick="openGame('golf')"><div class="emoji">⛳</div><h3>Mini Golf</h3><p>2P • Turn based</p></div>
-  <div class="card" onclick="openGame('race')"><div class="emoji">🏎️</div><h3>Car Race</h3><p>2P • Same Screen</p></div>
-  <div class="card" onclick="openGame('coop')"><div class="emoji">🤝</div><h3>Co-op Maze</h3><p>2 Player Co-op</p></div>
+  <div class="card" onclick="openGame('rps')"><div class="emoji">✊✋✌️</div><h3>Stone Paper Scissors</h3><p>Real 2 Phone</p></div>
+  <div class="card" onclick="openGame('ttt')"><div class="emoji">❌⭕</div><h3>Tic Tac Toe</h3><p>Real 2 Phone</p></div>
+  <div class="card" onclick="openGame('memory')"><div class="emoji">🧠</div><h3>Memory</h3><p>Same Phone Turn</p></div>
+  <div class="card" onclick="openGame('golf')"><div class="emoji">⛳</div><h3>Mini Golf</h3><p>Turn Based</p></div>
+  <div class="card" onclick="openGame('race')"><div class="emoji">🏎️</div><h3>Car Race</h3><p>Tap Race Online</p></div>
+  <div class="card" onclick="openGame('coop')"><div class="emoji">🤝</div><h3>Co-op</h3><p>Same Phone</p></div>
 </div>
 
 <div id="gameArea">
   <button class="btn" onclick="goHome()">← BACK</button>
-  <div class="score"><span>You: <span id="myScore">0</span></span><span>VS</span><span>Friend: <span id="frScore">0</span></span></div>
-  <h2 id="gameTitle"></h2>
-  <div id="status">Your Turn</div>
-  <div id="gameContent"></div>
+  <h2 id="gTitle"></h2>
+  <div id="gStatus" style="margin:10px;color:#ffa502;font-weight:bold">Connect karo pehle</div>
+  <div id="gContent"></div>
+  <div style="margin-top:10px">You: <span id="myS">0</span> | Friend: <span id="frS">0</span></div>
 </div>
 
 <script>
-let peer, conn, myRoomCode, isHost=false;
-let myScore=0, frScore=0;
-let currentGame='';
-
-peer = new Peer();
-peer.on('open', id=>{
-  myRoomCode = 'PANI-'+id.slice(-4).toUpperCase();
-  document.getElementById('myId').innerText='Your Room Code: '+myRoomCode+' (Copy karke dost ko bhej)';
-  document.getElementById('roomStatus').innerText='Room Ready! Code share karo.';
-});
-peer.on('connection', c=>{
-  conn=c; isHost=true;
-  conn.on('data', handleData);
-  conn.on('open', ()=>{ document.getElementById('roomStatus').innerText='✅ Dost Connected! Ab koi bhi game khelo'; alert('Dost aa gaya!'); });
-});
+let peer=null, conn=null, isHost=false, myRoomCode="", connected=false;
+let myScore=0, frScore=0, myRPS="", frRPS="";
+let board=["","","","","","","","",""], mySymbol="X", myTurn=true;
 
 function createRoom(){
-  navigator.clipboard.writeText(myRoomCode);
-  document.getElementById('roomStatus').innerText='Code Copy ho gaya: '+myRoomCode+' - WhatsApp pe bhej de!';
-  alert('Room Code: '+myRoomCode+' copy ho gaya!');
+  let code = Math.floor(1000+Math.random()*9000).toString();
+  myRoomCode=code;
+  peer = new Peer("2pg-"+code);
+  peer.on('open', ()=>{
+    document.getElementById('myCodeText').innerText="YOUR CODE: "+code+" - Dost ko bhej de";
+    document.getElementById('connStatus').innerText="Room ban gaya! Dost ke JOIN ka wait...";
+  });
+  peer.on('connection', c=>{
+    conn=c; connected=true; isHost=true; mySymbol="X"; myTurn=true;
+    setupConn();
+  });
 }
 function joinRoom(){
-  let code=document.getElementById('roomInput').value.trim().toUpperCase();
+  let code=document.getElementById('joinInput').value.trim();
   if(!code) return alert('Code dalo pehle');
-  // PeerJS me full code ke liye prefix chahiye, hum simple trick use kar rahe
-  // Demo ke liye: agar code PANI-XXXX hai to usko peer id se connect karne ki koshish
-  // Real me tumhe apne dost ka pura Peer ID chahiye, isliye Create wale ka code hi use karo
-  document.getElementById('roomStatus').innerText='Joining '+code+'... Dost ko bolo Create Room dabaye';
-  // Fallback: local 2 player mode me chalu kar do
-  alert('Online connect ke liye dost ko bolo CREATE ROOM dabaye, aur jo code dikhe wo tum JOIN me dalo. Agar PeerJS id na mile to dono same screen pe bhi khel sakte ho!');
+  peer = new Peer();
+  peer.on('open', ()=>{
+    conn = peer.connect("2pg-"+code);
+    setupConn();
+  });
 }
-
-function handleData(d){
-  if(d.type==='move'){ updateFromFriend(d); }
-  if(d.type==='rps'){ showRPSResult(d.choice); }
-  if(d.type==='score'){ document.getElementById('frScore').innerText=d.score; }
+function setupConn(){
+  conn.on('open', ()=>{
+    connected=true;
+    document.getElementById('connStatus').innerText="✅ CONNECTED! Ab game khelo";
+    document.getElementById('myCodeText').innerText="Connected! Code: "+(myRoomCode||document.getElementById('joinInput').value);
+    if(!isHost){ mySymbol="O"; myTurn=false; }
+    alert('Dost Connect ho gaya!');
+  });
+  conn.on('data', d=>{
+    if(d.type=='rps'){ frRPS=d.choice; checkRPS(); }
+    if(d.type=='ttt'){ board=d.board; renderTTT(); myTurn=true; document.getElementById('gStatus').innerText="Teri bari - "+mySymbol; checkWin(); }
+    if(d.type=='race'){ document.getElementById('frCar').style.left=d.pos+'%'; if(d.pos>=90) alert('Friend jeet gaya race!'); }
+  });
 }
-function sendData(d){ if(conn && conn.open) conn.send(d); }
+function send(d){ if(conn && conn.open) conn.send(d); }
 
 function openGame(g){
-  currentGame=g;
   document.getElementById('homeGrid').style.display='none';
   document.getElementById('gameArea').style.display='block';
-  if(g==='rps') showRPS();
-  if(g==='ttt') showTTT();
-  if(g==='memory') showMemory();
-  if(g==='golf') showGolf();
-  if(g==='race') showRace();
-  if(g==='coop') showCoop();
+  if(!connected) document.getElementById('gStatus').innerText="⚠️ Room Connect nahi hai - Upar CREATE/JOIN karo, nahi to BOT nahi chalega, wait karega";
+  else document.getElementById('gStatus').innerText="Connected - You are "+mySymbol;
+  if(g=='rps') showRPS();
+  if(g=='ttt') showTTT();
+  if(g=='race') showRace();
+  if(g=='memory') showMemory();
+  if(g=='golf') showGolf();
+  if(g=='coop') showCoop();
 }
-function goHome(){
-  document.getElementById('homeGrid').style.display='grid';
-  document.getElementById('gameArea').style.display='none';
-}
+function goHome(){ document.getElementById('homeGrid').style.display='grid'; document.getElementById('gameArea').style.display='none'; }
 
-// 1. STONE PAPER SCISSORS
+// RPS REAL
 function showRPS(){
-  document.getElementById('gameTitle').innerText='Stone Paper Scissors';
-  document.getElementById('gameContent').innerHTML=`
-  <div style="font-size:60px;display:flex;gap:15px;justify-content:center;margin:20px">
-    <button onclick="playRPS('stone')" style="font-size:50px;background:#2a2a3d;border:none;border-radius:15px;padding:15px;cursor:pointer">✊</button>
-    <button onclick="playRPS('paper')" style="font-size:50px;background:#2a2a3d;border:none;border-radius:15px;padding:15px;cursor:pointer">✋</button>
-    <button onclick="playRPS('scissors')" style="font-size:50px;background:#2a2a3d;border:none;border-radius:15px;padding:15px;cursor:pointer">✌️</button>
-  </div><div id="rpsResult" style="font-size:20px"></div>`;
-  document.getElementById('status').innerText='Chun ke dikhao! Room Code wala online bhi chalega';
+  document.getElementById('gTitle').innerText='Stone Paper Scissors - REAL';
+  document.getElementById('gContent').innerHTML=`
+  <div style="display:flex;gap:10px;justify-content:center;margin:20px">
+    <button onclick="playRPS('stone')" style="font-size:50px;padding:12px;border-radius:12px;background:#2a2a3d;border:none;cursor:pointer">✊</button>
+    <button onclick="playRPS('paper')" style="font-size:50px;padding:12px;border-radius:12px;background:#2a2a3d;border:none;cursor:pointer">✋</button>
+    <button onclick="playRPS('scissors')" style="font-size:50px;padding:12px;border-radius:12px;background:#2a2a3d;border:none;cursor:pointer">✌️</button>
+  </div><div id="rpsRes"></div>`;
 }
-let myRPS='';
-function playRPS(choice){
-  myRPS=choice;
-  sendData({type:'rps', choice});
-  let opts=['stone','paper','scissors'];
-  let comp=opts[Math.floor(Math.random()*3)];
-  showRPSResult(comp, true);
+function playRPS(c){
+  if(!connected) return alert('Pehle Room Connect karo! Upar CREATE/JOIN');
+  myRPS=c; send({type:'rps', choice:c});
+  document.getElementById('rpsRes').innerText='Tune '+c+' chuna - Dost ka wait...';
+  checkRPS();
 }
-function showRPSResult(comp, isLocal){
+function checkRPS(){
+  if(!myRPS || !frRPS) return;
   let map={stone:'✊',paper:'✋',scissors:'✌️'};
   let res='';
-  if(myRPS===comp) res='DRAW!';
-  else if((myRPS==='stone'&&comp==='scissors')||(myRPS==='paper'&&comp==='stone')||(myRPS==='scissors'&&comp==='paper')){ res='YOU WIN! 🔥'; myScore++; }
-  else { res='FRIEND WINS!'; frScore++; }
-  document.getElementById('myScore').innerText=myScore;
-  document.getElementById('frScore').innerText=frScore;
-  document.getElementById('rpsResult').innerHTML=`You ${map[myRPS]} VS ${map[comp]} Friend<br><b>${res}</b>`;
+  if(myRPS==frRPS) res='DRAW!';
+  else if((myRPS=='stone'&&frRPS=='scissors')||(myRPS=='paper'&&frRPS=='stone')||(myRPS=='scissors'&&frRPS=='paper')){ res='TU JEETA! 🔥'; myScore++; }
+  else { res='DOST JEETA!'; frScore++; }
+  document.getElementById('myS').innerText=myScore; document.getElementById('frS').innerText=frScore;
+  document.getElementById('rpsRes').innerHTML=`Tu ${map[myRPS]} VS ${map[frRPS]} Dost<br><b>${res}</b>`;
+  myRPS=""; frRPS="";
 }
 
-// 2. TIC TAC TOE
-let board=['','','','','','','','',''], turn='X';
+// TTT REAL
 function showTTT(){
-  document.getElementById('gameTitle').innerText='Tic Tac Toe';
-  board=['','','','','','','','','']; turn='X';
-  document.getElementById('gameContent').innerHTML=`<div id="board">${board.map((_,i)=>`<div class="cell" onclick="tttMove(${i})"></div>`).join('')}</div>`;
-  document.getElementById('status').innerText='X ki bari - Room Code me dono taraf update hoga';
+  document.getElementById('gTitle').innerText='Tic Tac Toe - You are '+mySymbol;
+  board=["","","","","","","","",""];
+  document.getElementById('gContent').innerHTML=`<div id="board">${board.map((_,i)=>`<div class="cell" onclick="tttMove(${i})"></div>`).join('')}</div>`;
+  document.getElementById('gStatus').innerText= connected ? (myTurn ? "Teri bari" : "Dost ki bari") : "Connect karo pehle";
 }
 function tttMove(i){
+  if(!connected) return alert('Pehle Room Connect karo!');
+  if(!myTurn) return alert('Dost ki bari hai, ruk ja!');
   if(board[i]) return;
-  board[i]=turn;
-  sendData({type:'move', game:'ttt', board, turn});
-  renderTTT();
-  turn=turn==='X'?'O':'X';
-  document.getElementById('status').innerText=turn+' ki bari';
-  checkTTT();
+  board[i]=mySymbol; myTurn=false;
+  send({type:'ttt', board});
+  renderTTT(); checkWin();
+  document.getElementById('gStatus').innerText="Dost ki bari...";
 }
-function renderTTT(){
-  document.querySelectorAll('.cell').forEach((c,i)=>c.innerText=board[i]);
-}
-function checkTTT(){
+function renderTTT(){ document.querySelectorAll('.cell').forEach((c,i)=>c.innerText=board[i]); }
+function checkWin(){
   let w=[[0,1,2],[3,4,5],[6,7,8],[0,3,6],[1,4,7],[2,5,8],[0,4,8],[2,4,6]];
-  for(let a of w){ if(board[a[0]]&&board[a[0]]===board[a[1]]&&board[a[1]]===board[a[2]]){ document.getElementById('status').innerText=board[a[0]]+' JEET GAYA! 🎉'; if(board[a[0]]==='X') myScore++; else frScore++; document.getElementById('myScore').innerText=myScore; document.getElementById('frScore').innerText=frScore; } }
+  for(let a of w){ if(board[a[0]]&&board[a[0]]==board[a[1]]&&board[a[1]]==board[a[2]]){ document.getElementById('gStatus').innerText=board[a[0]]+" JEETA!"; if(board[a[0]]==mySymbol) myScore++; else frScore++; document.getElementById('myS').innerText=myScore; document.getElementById('frS').innerText=frScore; } }
 }
 
-// 3. MEMORY
+// RACE REAL
+let myRacePos=0;
+function showRace(){
+  document.getElementById('gTitle').innerText='Car Race - Real';
+  myRacePos=0;
+  document.getElementById('gContent').innerHTML=`
+  <div style="background:#222;padding:10px;border-radius:10px;text-align:left">YOU 🚗<div id="myCar" style="font-size:30px;position:relative;left:0%">🚗</div></div>
+  <div style="background:#222;padding:10px;border-radius:10px;margin-top:10px;text-align:left">FRIEND 🚗<div id="frCar" style="font-size:30px;position:relative;left:0%">🚗</div></div>
+  <button class="btn" style="margin-top:15px;padding:15px 30px;font-size:20px" onclick="raceTap()">TAP TO RUN!</button>`;
+}
+function raceTap(){
+  if(!connected) return alert('Room connect karo pehle');
+  myRacePos+=8; document.getElementById('myCar').style.left=myRacePos+'%';
+  send({type:'race', pos:myRacePos});
+  if(myRacePos>=90){ alert('TU JEETA RACE! 🏆'); myScore++; document.getElementById('myS').innerText=myScore; myRacePos=0; }
+}
+
+// Others - same phone turn based
 function showMemory(){
-  document.getElementById('gameTitle').innerText='Memory Game';
-  let em=['🍎','🍎','🚗','🚗','⚽','⚽','🎮','🎮'];
-  em=em.sort(()=>Math.random()-0.5);
-  document.getElementById('gameContent').innerHTML=`<div style="display:grid;grid-template-columns:repeat(4,70px);gap:10px;justify-content:center">${em.map((e,i)=>`<div class="cell" style="font-size:30px" onclick="flipMem(this,'${e}') }">?</div>`).join('')}</div><p style="margin-top:10px">2 same dhundo - Room Code me score compare hoga</p>`;
+  document.getElementById('gTitle').innerText='Memory';
+  let em=['🍎','🍎','🚗','🚗','⚽','⚽','🎮','🎮'].sort(()=>Math.random()-0.5);
+  document.getElementById('gContent').innerHTML=`<div style="display:grid;grid-template-columns:repeat(4,70px);gap:8px;justify-content:center">${em.map(e=>`<div class="cell" onclick="flipM(this,'${e}')">?</div>`).join('')}</div>`;
 }
-let firstCard=null;
-function flipMem(el, e){
-  if(el.innerText!=='?') return;
-  el.innerText=e;
-  if(!firstCard) firstCard={el,e};
-  else{ if(firstCard.e===e){ myScore++; document.getElementById('myScore').innerText=myScore; firstCard=null; } else{ setTimeout(()=>{ el.innerText='?'; firstCard.el.innerText='?'; firstCard=null; },700);} }
-}
-
-// 4. MINI GOLF
+let f1=null;
+function flipM(el,e){ if(el.innerText!='?') return; el.innerText=e; if(!f1) f1={el,e}; else{ if(f1.e==e){ f1=null; } else setTimeout(()=>{el.innerText='?'; f1.el.innerText='?'; f1=null;},700);} }
 function showGolf(){
-  document.getElementById('gameTitle').innerText='Mini Golf - Tap to Hit';
-  document.getElementById('gameContent').innerHTML=`<canvas id="golfC" width="300" height="200" style="background:#2ed573;border-radius:15px"></canvas><br><button class="btn btn2" onclick="hitGolf()">HIT BALL</button><p>Ball ko hole tak le jao - kam hit me jeeto</p>`;
+  document.getElementById('gTitle').innerText='Mini Golf';
+  document.getElementById('gContent').innerHTML=`<canvas id="gc" width="300" height="150" style="background:#2ed573;border-radius:10px"></canvas><br><button class="btn btn2" onclick="hitG()">HIT</button>`;
+  let c=document.getElementById('gc'); let x=c.getContext('2d'); x.fillStyle='#fff'; x.beginPath(); x.arc(20,75,10,0,7); x.fill(); x.fillStyle='#000'; x.beginPath(); x.arc(270,75,12,0,7); x.fill();
+  window.gx=20;
+}
+function hitG(){ let c=document.getElementById('gc'); let x=c.getContext('2d'); window.gx+=30; x.clearRect(0,0,300,150); x.fillStyle='#2ed573'; x.fillRect(0,0,300,150); x.fillStyle='#fff'; x.beginPath(); x.arc(window.gx,75,10,0,7); x.fill(); x.fillStyle='#000'; x.beginPath(); x.arc(270,75,12,0,7); x.fill(); if(window.gx>=260) alert('HOLE!'); }
+function showCoop(){
+  document.getElementById('gTitle').innerText='Co-op Maze';
+  document.getElementById('gContent').innerHTML=`<p>2 player same phone - ek WASD ek Arrow se</p><div style="width:200px;height:150px;background:#2a2a3d;margin:auto;border-radius:10px;position:relative"><div id="p1" style="position:absolute;left:10px;top:10px">🔵</div><div id="p2" style="position:absolute;right:10px;bottom:10px">🔴</div></div>`;
+}
+</script>
+</body>
+</html>/button><p>Ball ko hole tak le jao - kam hit me jeeto</p>`;
   drawGolf(20,100);
 }
 let gx=20;
